@@ -1595,6 +1595,49 @@
 			"item": [
 				{
 					"name": "Get Roadster Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"const response = pm.response.json();",
+									"",
+									"",
+									"pm.test(\"Name should be Elon Musk's Tesla Roadster\", () => {",
+									"    pm.expect(response.name).to.be.eql(\"Elon Musk's Tesla Roadster\")",
+									"});",
+									"",
+									"pm.test(\"Launch date should be 2018-02-06T20:45:00.000Z\", () => {",
+									"    pm.expect(response.launch_date_utc).to.be.eql(\"2018-02-06T20:45:00.000Z\")",
+									"});",
+									"",
+									"pm.test(\"Launch mass in kg should be 1350\", () => {",
+									"    pm.expect(response.launch_mass_kg).to.be.eql(1350)",
+									"});",
+									"",
+									"pm.test(\"Speed in kph should be a number\", () => {",
+									"    pm.expect(response.speed_kph).to.be.a(\"number\")",
+									"});",
+									"",
+									"pm.test(\"Earth distance in km should be a number\", () => {",
+									"    pm.expect(response.earth_distance_km).to.be.a(\"number\")",
+									"});",
+									"",
+									"pm.test(\"Mars distance in km should be a number\", () => {",
+									"    pm.expect(response.mars_distance_km).to.be.a(\"number\")",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
