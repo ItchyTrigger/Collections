@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "83c2ce78-75b6-4269-8a3a-ea55b896694d",
+		"_postman_id": "ff16b858-ec22-4303-a784-c587f366abcd",
 		"name": "r/SpaceX API V4",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -433,6 +433,17 @@
 			"item": [
 				{
 					"name": "Get all Crew",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -1600,10 +1611,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"if(pm.response.code == \"200\") {",
+									"",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
-									"",
 									"",
 									"const response = pm.response.json();",
 									"",
@@ -1632,7 +1644,11 @@
 									"    pm.expect(response.mars_distance_km).to.be.a(\"number\")",
 									"});",
 									"",
-									""
+									"} else {",
+									"    pm.test(\"Status code is 404\", () => {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"}"
 								],
 								"type": "text/javascript"
 							}
